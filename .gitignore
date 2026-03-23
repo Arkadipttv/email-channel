@@ -1,0 +1,29 @@
+# Dependencies
+/vendor/
+
+# Environment files
+.env
+.env.*
+
+# IDE / Editor
+/.idea
+/.vscode
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# PHPUnit / testing
+/phpunit.xml
+.phpunit.result.cache
+
+# Composer lock (OPTIONAL for packages)
+composer.lock
+
+# Coverage reports
+/coverage
