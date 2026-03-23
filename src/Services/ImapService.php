@@ -12,16 +12,19 @@ class ImapService
     {
         $config = config('email-channel.imap');
 
-        $cm = new ClientManager([
+            $cm = new ClientManager([
+        'accounts' => [
             'default' => [
                 'host' => $config['host'],
                 'port' => $config['port'],
                 'encryption' => $config['encryption'],
+                'validate_cert' => true,
                 'username' => $config['username'],
                 'password' => $config['password'],
                 'protocol' => 'imap'
             ]
-        ]);
+        ]
+    ]);
 
         $client = $cm->account('default');
         $client->connect();
@@ -41,7 +44,7 @@ class ImapService
                 'from' => optional($msg->getFrom()->first())->mail ?? '',
                 'to' => optional($msg->getTo()->first())->mail ?? '',
                 'content' => $msg->getTextBody() ?: $msg->getHTMLBody(),
-                'timestamp' => $msg->getDate()?->toDateTimeString(),
+                'timestamp' => $msg->getDate(),
                 'status' => 'received'
             ]);
 
